@@ -23,72 +23,79 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 function Carusela() {
-  const [state, setState] = useState(0);
+  const [state, setState] = useState(-100);
   const [last, setLast] = useState(false);
   const [pictureArray] = useState([
     {
+      img: eighthImage,
+      txt: "Yakuza Like a Dragon",
+    },
+    {
       img: firstImage,
-      txt: "bond",
+      txt: "007 Quantum of Solace ",
     },
     {
       img: secondImage,
-      txt: "fitness",
+      txt: "Fitness Boxing",
     },
     {
       img: thirdImage,
-      txt: "hunter",
+      txt: "Monster Hunter Rise",
     },
     {
       img: fourthImage,
-      txt: "mittopia",
+      txt: "Miitopia",
     },
     {
       img: fivethImage,
-      txt: "nightmare2",
+      txt: "Little Nightmares II ",
     },
     {
       img: sixthImage,
-      txt: "ratchet",
+      txt: " Ratchet & Clank: Rift Apart",
     },
     {
       img: seventhImage,
-      txt: "ride4",
+      txt: "Ride 4",
     },
     {
       img: eighthImage,
-      txt: "yakuza",
+      txt: "Yakuza Like a Dragon",
     },
     {
       img: firstImage,
-      txt: "bond",
+      txt: "007 Quantum of Solace ",
     },
   ]);
 
   useEffect(() => {
-    if (state === -800) {
-      setLast(true);
-    } else {
+    if (state === -100 || state === -800) {
       setLast(false);
     }
   }, [state]);
 
   const moveForward = () => {
-    if (state === -800) {
-      setState(-100);
-    } else {
-      setState(state - 100);
-    }
+    if (state === -900) return;
+    setState(state - 100);
   };
 
-  const moveBackward = () => {
-    if (state === 100) {
-      setState(0);
-    } else {
-      setState(state + 100);
+  const transformForward = () => {
+    if (state === -900) {
+      setLast(true);
+      setState(-100);
     }
   };
-  console.log(state);
-  console.log(last);
+  const transformBackward = () => {
+    if (state === 0) {
+      setLast(true);
+      setState(-800);
+    }
+  };
+  const moveBackward = () => {
+    if (state === 0) return;
+    setState(state + 100);
+  };
+
   return (
     <Wrapper>
       <Container>
@@ -105,14 +112,17 @@ function Carusela() {
             onClick={moveForward}
           ></RightArrow>
         </TopBottom>
-
         <PictureContent>
           {pictureArray.map((element, index) => (
             <Picture
+              onTransitionEnd={(e) => {
+                transformForward(e);
+                transformBackward(e);
+              }}
+              props={last}
               key={index}
               style={{
                 transform: `translateX(${state}%)`,
-                transition: last ? "none" : "all .3s",
               }}
             >
               <ImageLoad image={element.img} title={element.txt} />

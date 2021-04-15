@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Wrapper = styled.div`
@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
 export const Container = styled.div`
   position: absolute;
   top: 50%;
-  right: 50%;
+  left: 50%;
   width: 500px;
   transform: translate(-50%, -50%);
   height: 400px;
@@ -20,20 +20,31 @@ export const Container = styled.div`
 export const TopBottom = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   color: #fff;
   padding: 0 10px;
 `;
-export const LeftArrow = styled(FontAwesomeIcon)``;
+export const LeftArrow = styled(FontAwesomeIcon)`
+  cursor: pointer;
+  transition: transform 0.3s;
+  &:hover {
+    transform: translateX(-5px);
+  }
+`;
 export const Title = styled.h2`
   text-transform: uppercase;
   font-size: 2em;
 `;
-export const RightArrow = styled(FontAwesomeIcon)``;
+export const RightArrow = styled(LeftArrow)`
+  &:hover {
+    transform: translateX(5px);
+  }
+`;
 
 export const PictureContent = styled.div`
   display: flex;
   justify-content: flex-start;
-  overflow:hidden;
+  overflow: hidden;
 `;
 
 export const Picture = styled.div`
@@ -43,6 +54,12 @@ export const Picture = styled.div`
   margin-top: 10px;
   flex-shrink: 0;
   border-right: 1px solid black;
+  transition: transform 0.3s;
+  ${({ props }) =>
+    props &&
+    css`
+      transition: none;
+    `}
 `;
 
 export const PictureImg = styled.img``;
