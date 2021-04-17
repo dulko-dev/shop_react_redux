@@ -15,7 +15,6 @@ export const Container = styled.div`
   width: 500px;
   transform: translate(-50%, -50%);
   height: 400px;
-  border: 1px solid red;
 `;
 export const TopBottom = styled.div`
   display: flex;
@@ -23,6 +22,10 @@ export const TopBottom = styled.div`
   align-items: center;
   color: #fff;
   padding: 0 10px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 `;
 export const LeftArrow = styled(FontAwesomeIcon)`
   cursor: pointer;
@@ -43,13 +46,12 @@ export const RightArrow = styled(LeftArrow)`
 
 export const PictureContent = styled.div`
   display: flex;
-  justify-content: flex-start;
   overflow: hidden;
 `;
 
 export const Picture = styled.div`
   background-color: #fff;
-  height: 348px;
+  align-self: stretch;
   flex-basis: 100%;
   margin-top: 10px;
   flex-shrink: 0;

@@ -29,42 +29,52 @@ function Carusela() {
     {
       img: eighthImage,
       txt: "Yakuza Like a Dragon",
+      price: 200,
     },
     {
       img: firstImage,
       txt: "007 Quantum of Solace ",
+      price: 9.99,
     },
     {
       img: secondImage,
       txt: "Fitness Boxing",
+      price: 35.5,
     },
     {
       img: thirdImage,
       txt: "Monster Hunter Rise",
+      price: 120,
     },
     {
       img: fourthImage,
       txt: "Miitopia",
+      price: 159.99,
     },
     {
       img: fivethImage,
       txt: "Little Nightmares II ",
+      price: 200.59,
     },
     {
       img: sixthImage,
       txt: " Ratchet & Clank: Rift Apart",
+      price: 210,
     },
     {
       img: seventhImage,
       txt: "Ride 4",
+      price: 40,
     },
     {
       img: eighthImage,
       txt: "Yakuza Like a Dragon",
+      price: 200,
     },
     {
       img: firstImage,
-      txt: "007 Quantum of Solace ",
+      txt: "007 Quantum of Solace",
+      price: 9.99,
     },
   ]);
 
@@ -125,7 +135,11 @@ function Carusela() {
                 transform: `translateX(${state}%)`,
               }}
             >
-              <ImageLoad image={element.img} title={element.txt} />
+              <ImageLoad
+                image={element.img}
+                title={element.txt}
+                price={element.price}
+              />
             </Picture>
           ))}
         </PictureContent>
