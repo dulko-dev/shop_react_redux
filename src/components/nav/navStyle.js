@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
+  position: sticky;
+  top: 0;
+  z-index: 1;
   background-color: #06080f;
   width: 100%;
   height: 70px;
@@ -56,7 +59,7 @@ export const RightBox = styled.div`
 
 export const IconBasket = styled(FontAwesomeIcon)`
   font-size: 1.2em;
-  padding-right:10px;
+  padding-right: 10px;
 `;
 
 export const NumbersOfAmount = styled.span`
@@ -65,10 +68,10 @@ export const NumbersOfAmount = styled.span`
   position: absolute;
   top: 4px;
   left: 35px;
-  padding:2px 6px;
-  text-align:center;
+  padding: 2px 6px;
+  text-align: center;
 `;
 export const PriceAmount = styled.div`
-font-weight:600;
+  font-weight: 600;
 `;
 export const FbIcon = styled.div``;

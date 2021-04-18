@@ -30,51 +30,51 @@ function Carusela() {
       img: eighthImage,
       txt: "Yakuza Like a Dragon",
       price: 200,
+      amount: 3,
     },
     {
+      id: 1,
       img: firstImage,
       txt: "007 Quantum of Solace ",
       price: 9.99,
+      amount: 3,
     },
+    { id: 2, img: secondImage, txt: "Fitness Boxing", price: 35.5, amount: 3 },
     {
-      img: secondImage,
-      txt: "Fitness Boxing",
-      price: 35.5,
-    },
-    {
+      id: 3,
       img: thirdImage,
       txt: "Monster Hunter Rise",
       price: 120,
+      amount: 3,
     },
+    { id: 4, img: fourthImage, txt: "Miitopia", price: 159.99, amount: 3 },
     {
-      img: fourthImage,
-      txt: "Miitopia",
-      price: 159.99,
-    },
-    {
+      id: 5,
       img: fivethImage,
       txt: "Little Nightmares II ",
       price: 200.59,
+      amount: 3,
     },
     {
+      id: 6,
       img: sixthImage,
       txt: " Ratchet & Clank: Rift Apart",
       price: 210,
+      amount: 3,
     },
+    { id: 7, img: seventhImage, txt: "Ride 4", price: 40, amount: 3 },
     {
-      img: seventhImage,
-      txt: "Ride 4",
-      price: 40,
-    },
-    {
+      id: 8,
       img: eighthImage,
       txt: "Yakuza Like a Dragon",
       price: 200,
+      amount: 3,
     },
     {
       img: firstImage,
       txt: "007 Quantum of Solace",
       price: 9.99,
+      amount: 3,
     },
   ]);
 
@@ -139,6 +139,7 @@ function Carusela() {
                 image={element.img}
                 title={element.txt}
                 price={element.price}
+                id={element.id}
               />
             </Picture>
           ))}
