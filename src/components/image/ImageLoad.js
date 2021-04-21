@@ -83,12 +83,7 @@ function ImageLoad({ image, title, price, id, amount }) {
       <ShoppingContent>
         <Price>${price}</Price>
         <Basket>
-          <FontAwesomeIcon
-            icon={faCartArrowDown}
-            onClick={() => {
-              handleAddAmount();
-            }}
-          />
+          <FontAwesomeIcon icon={faCartArrowDown} onClick={handleAddAmount} />
         </Basket>
         <p>{amount}</p>
       </ShoppingContent>

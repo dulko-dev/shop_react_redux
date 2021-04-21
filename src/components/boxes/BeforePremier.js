@@ -33,6 +33,7 @@ import {
   faWindows,
 } from "@fortawesome/free-brands-svg-icons";
 import { faCartArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { addItem } from "../../features/addItemSlice";
 
 function BeforePremier() {
   const playAmount = useSelector(playstationState);
@@ -41,8 +42,53 @@ function BeforePremier() {
 
   const dispatch = useDispatch();
 
-  const handleBasket = () => {
-    dispatch(add());
+  const playBasket = (id) => {
+    playAmount.map((el) => {
+      if (el.id === id) {
+        dispatch(addprice(el.price));
+        dispatch(add());
+        dispatch(
+          addItem({
+            title: el.txt,
+            id: el.id,
+            img: el.img,
+          })
+        );
+      }
+      return el;
+    });
+  };
+  const xboxBasket = (id) => {
+    xboxAmount.map((el) => {
+      if (el.id === id) {
+        dispatch(addprice(el.price));
+        dispatch(add());
+        dispatch(
+          addItem({
+            title: el.txt,
+            id: el.id,
+            img: el.img,
+          })
+        );
+      }
+      return el;
+    });
+  };
+  const windowsBasket = (id) => {
+    windowsAmount.map((el) => {
+      if (el.id === id) {
+        dispatch(addprice(el.price));
+        dispatch(add());
+        dispatch(
+          addItem({
+            title: el.txt,
+            id: el.id,
+            img: el.img,
+          })
+        );
+      }
+      return el;
+    });
   };
 
   return (
@@ -70,7 +116,11 @@ function BeforePremier() {
           <Text>PreOrder</Text>
         </WindowsBox>
         {playAmount.map((game) => (
-          <PlaystationGameWrapper column>
+          <PlaystationGameWrapper
+            column
+            style={{ gridRow: `${game.row}` }}
+            key={game.id}
+          >
             <SideLeft>
               <Image src={game.img} />
             </SideLeft>
@@ -78,13 +128,20 @@ function BeforePremier() {
               <TitleSideRight>{game.txt}</TitleSideRight>
               <PriceBasketWrapper>
                 <PriceSideRight>{game.price}</PriceSideRight>
-                <BasketIcon icon={faCartArrowDown} onClick={handleBasket} />
+                <BasketIcon
+                  icon={faCartArrowDown}
+                  onClick={() => playBasket(game.id)}
+                />
               </PriceBasketWrapper>
             </SideRight>
           </PlaystationGameWrapper>
         ))}
         {xboxAmount.map((game) => (
-          <XboxGameWrapper column style={{ gridRow: `${game.row}` }}>
+          <XboxGameWrapper
+            column
+            style={{ gridRow: `${game.row}` }}
+            key={game.id}
+          >
             {console.log(game.row)}
             <SideLeft>
               <Image src={game.img} />
@@ -93,13 +150,20 @@ function BeforePremier() {
               <TitleSideRight>{game.txt}</TitleSideRight>
               <PriceBasketWrapper>
                 <PriceSideRight>${game.price}</PriceSideRight>
-                <BasketIcon icon={faCartArrowDown} />
+                <BasketIcon
+                  icon={faCartArrowDown}
+                  onClick={() => xboxBasket(game.id)}
+                />
               </PriceBasketWrapper>
             </SideRight>
           </XboxGameWrapper>
         ))}
         {windowsAmount.map((game) => (
-          <WIndowsGameWrapper column style={{ gridRow: `${game.row}` }}>
+          <WIndowsGameWrapper
+            column
+            style={{ gridRow: `${game.row}` }}
+            key={game.id}
+          >
             <SideLeft>
               <Image src={game.img} />
             </SideLeft>
@@ -107,7 +171,10 @@ function BeforePremier() {
               <TitleSideRight>{game.txt}</TitleSideRight>
               <PriceBasketWrapper>
                 <PriceSideRight>${game.price}</PriceSideRight>
-                <BasketIcon icon={faCartArrowDown} />
+                <BasketIcon
+                  icon={faCartArrowDown}
+                  onClick={() => windowsBasket(game.id)}
+                />
               </PriceBasketWrapper>
             </SideRight>
           </WIndowsGameWrapper>
