@@ -13,18 +13,15 @@ import {
   LinkStyle,
   NumbersOfAmount,
 } from "./navStyle";
-import {
-  amountState,
-  priceState,
-  itemsState,
-} from "../../features/amountSlice";
+import { amountState, priceState } from "../../features/amountSlice";
+import { addItemState } from "../../features/addItemSlice";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 function Nav() {
   const amountOfOrder = useSelector(amountState);
   const priceOfOrder = useSelector(priceState);
-  const items = useSelector(itemsState);
+  const items = useSelector(addItemState);
   console.log(items);
   return (
     <Wrapper>

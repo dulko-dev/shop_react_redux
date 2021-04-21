@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  
   amount: 0,
-  addItems: [],
   price: 0,
 };
 
@@ -19,17 +19,11 @@ const amountSlice = createSlice({
         price: state.price + action.payload,
       };
     },
-    addItems: (state, action) => {
-      return {
-        ...state,
-        addItems: [...state.addItems, action.payload],
-      };
-    },
+    
   },
 });
 
-export const { add, addprice, addItems } = amountSlice.actions;
+export const { add, addprice } = amountSlice.actions;
 export const amountState = (state) => state.amount.amount;
 export const priceState = (state) => state.amount.price.toFixed(2);
-export const itemsState = (state) => state.amount.addItems;
 export default amountSlice.reducer;

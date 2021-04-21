@@ -3,7 +3,9 @@ import styled from "styled-components";
 import { faCartArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
-import { add, addprice, addItems } from "../../features/amountSlice";
+import { add, addprice } from "../../features/amountSlice";
+import { addItem } from "../../features/addItemSlice";
+import { removeAmount } from "../../features/caruselaSlice";
 
 const Wrapper = styled.div`
   display: flex;
@@ -49,19 +51,27 @@ const Basket = styled.span`
   cursor: pointer;
 `;
 
-function ImageLoad({ image, title, price, id }) {
+function ImageLoad({ image, title, price, id, amount }) {
   const dispatch = useDispatch();
 
   const handleAddAmount = () => {
     dispatch(add());
     dispatch(addprice(price));
     dispatch(
-      addItems({
+      addItem({
         title: title,
         id: id,
         img: image,
+        amount: amount,
       })
     );
+    dispatch(
+      removeAmount({
+        id: id,
+        amount: amount,
+      })
+    );
+    console.log(amount);
   };
 
   return (
@@ -73,8 +83,14 @@ function ImageLoad({ image, title, price, id }) {
       <ShoppingContent>
         <Price>${price}</Price>
         <Basket>
-          <FontAwesomeIcon icon={faCartArrowDown} onClick={handleAddAmount} />
+          <FontAwesomeIcon
+            icon={faCartArrowDown}
+            onClick={() => {
+              handleAddAmount();
+            }}
+          />
         </Basket>
+        <p>{amount}</p>
       </ShoppingContent>
     </Wrapper>
   );

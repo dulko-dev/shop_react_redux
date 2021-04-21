@@ -62,25 +62,6 @@ export const PlaystationGameWrapper = styled.div`
     `;
     }
   }};
-  grid-row: ${(props) => {
-    if (props.rowOne) {
-      return `
-      2/3
-      `;
-    } else if (props.rowTwo) {
-      return `
-      3/4
-      `;
-    } else if (props.rowThree) {
-      return `
-      4/5
-      `;
-    } else {
-      return `
-      5/6
-      `;
-    }
-  }};
 `;
 export const XboxGameWrapper = styled(PlaystationGameWrapper)`
   grid-column: ${(props) => {

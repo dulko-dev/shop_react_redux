@@ -11,72 +11,17 @@ import {
   PictureContent,
   Picture,
 } from "./caruselaStyle";
-import firstImage from "../../assets/last_add/bond.jpg";
-import secondImage from "../../assets/last_add/fitness.jpg";
-import thirdImage from "../../assets/last_add/hunter.jpg";
-import fourthImage from "../../assets/last_add/mittopia.jpg";
-import fivethImage from "../../assets/last_add/nightmares2.jpg";
-import sixthImage from "../../assets/last_add/ratchet.jpg";
-import seventhImage from "../../assets/last_add/ride4.jpg";
-import eighthImage from "../../assets/last_add/yakuza.jpg";
+
 import { useState } from "react";
 import { useEffect } from "react";
+import { caruselaState } from "../../features/caruselaSlice";
+import { useSelector } from "react-redux";
 
 function Carusela() {
   const [state, setState] = useState(-100);
   const [last, setLast] = useState(false);
-  const [pictureArray] = useState([
-    {
-      img: eighthImage,
-      txt: "Yakuza Like a Dragon",
-      price: 200,
-      amount: 3,
-    },
-    {
-      id: 1,
-      img: firstImage,
-      txt: "007 Quantum of Solace ",
-      price: 9.99,
-      amount: 3,
-    },
-    { id: 2, img: secondImage, txt: "Fitness Boxing", price: 35.5, amount: 3 },
-    {
-      id: 3,
-      img: thirdImage,
-      txt: "Monster Hunter Rise",
-      price: 120,
-      amount: 3,
-    },
-    { id: 4, img: fourthImage, txt: "Miitopia", price: 159.99, amount: 3 },
-    {
-      id: 5,
-      img: fivethImage,
-      txt: "Little Nightmares II ",
-      price: 200.59,
-      amount: 3,
-    },
-    {
-      id: 6,
-      img: sixthImage,
-      txt: " Ratchet & Clank: Rift Apart",
-      price: 210,
-      amount: 3,
-    },
-    { id: 7, img: seventhImage, txt: "Ride 4", price: 40, amount: 3 },
-    {
-      id: 8,
-      img: eighthImage,
-      txt: "Yakuza Like a Dragon",
-      price: 200,
-      amount: 3,
-    },
-    {
-      img: firstImage,
-      txt: "007 Quantum of Solace",
-      price: 9.99,
-      amount: 3,
-    },
-  ]);
+  const amountState = useSelector(caruselaState);
+  console.log(amountState);
 
   useEffect(() => {
     if (state === -100 || state === -800) {
@@ -123,7 +68,7 @@ function Carusela() {
           ></RightArrow>
         </TopBottom>
         <PictureContent>
-          {pictureArray.map((element, index) => (
+          {amountState.map((element, index) => (
             <Picture
               onTransitionEnd={(e) => {
                 transformForward(e);
@@ -140,6 +85,7 @@ function Carusela() {
                 title={element.txt}
                 price={element.price}
                 id={element.id}
+                amount={element.amount}
               />
             </Picture>
           ))}

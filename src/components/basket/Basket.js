@@ -1,9 +1,9 @@
 import React from "react";
-import { itemsState } from "../../features/amountSlice";
+import { addItemState } from "../../features/addItemSlice";
 import { useSelector } from "react-redux";
 
 function Basket() {
-  const selected = useSelector(itemsState);
+  const selected = useSelector(addItemState);
   console.log(selected);
   return (
     <div>
