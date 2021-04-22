@@ -55,7 +55,7 @@ function BeforePremier() {
           </TitleLogoRow>
           <Text>PreOrder</Text>
         </WindowsBox>
-        {playAmount.map((game) => (
+        {playAmount.map((game) =>
           <PlaystationGames
             key={game.id}
             row={game.row}
@@ -65,7 +65,7 @@ function BeforePremier() {
             id={game.id}
             amount={game.amount}
           />
-        ))}
+        )}
         {xboxAmount.map((game) => (
           <XboxGames
             key={game.id}

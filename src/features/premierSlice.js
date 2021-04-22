@@ -153,6 +153,9 @@ const initialState = {
       row: "5/6",
     },
   ],
+  add: 0,
+  addprice: 0,
+  addItems: [],
 };
 
 const premierSlice = createSlice({
@@ -171,6 +174,7 @@ const premierSlice = createSlice({
         }),
       };
     },
+
     removeXbox: (state, action) => {
       return {
         ...state,
@@ -193,11 +197,31 @@ const premierSlice = createSlice({
         }),
       };
     },
+    add: (state) => {
+      return {
+        ...state,
+        add: state.add + 1,
+      };
+    },
+    addprice: (state, action) => {
+      return {
+        ...state,
+        addprice: state.addprice + action.payload,
+      };
+    },
   },
 });
 
-export const { removePlay, removeXbox, removeWindows } = premierSlice.actions;
+export const {
+  removePlay,
+  removeXbox,
+  removeWindows,
+  add,
+  addprice,
+} = premierSlice.actions;
 export const playstationState = (state) => state.premier.playstation;
 export const xboxState = (state) => state.premier.xbox;
 export const windowsState = (state) => state.premier.windows;
+export const addState = (state) => state.premier.add;
+export const priceState = (state) => state.premier.addprice.toFixed(2);
 export default premierSlice.reducer;

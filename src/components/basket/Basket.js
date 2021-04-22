@@ -8,9 +8,6 @@ function Basket() {
   console.log(selected);
   const dispatch = useDispatch();
 
-  const handleDelete = (id) => {
-    dispatch(removeItem(id));
-  };
   return (
     <Wrapper>
       <Container>
@@ -37,7 +34,7 @@ function Basket() {
                       paddingBottom: "20px",
                     }}
                   >
-                    <button onClick={() => handleDelete(e.id)}>X</button>
+                    <button>X</button>
                     <img src={e.img} />
                     <h2>{e.title}</h2>
                   </td>

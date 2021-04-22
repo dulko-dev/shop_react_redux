@@ -68,7 +68,11 @@ const caruselaSlice = createSlice({
     removeAmount: (state, action) => {
       return state.map((el) => {
         if (el.id === action.payload.id) {
-          return { ...el, amount: el.amount - 1 };
+          if (el.amount === 0) {
+            return el;
+          } else {
+            return { ...el, amount: el.amount - 1 };
+          }
         }
         console.log(el.amount);
         return el;

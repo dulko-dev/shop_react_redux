@@ -13,15 +13,15 @@ import {
   LinkStyle,
   NumbersOfAmount,
 } from "./navStyle";
-import { amountState, priceState } from "../../features/amountSlice";
+import { addState, priceState } from "../../features/premierSlice";
 import { addItemState } from "../../features/addItemSlice";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 function Nav() {
-  const amountOfOrder = useSelector(amountState);
   const priceOfOrder = useSelector(priceState);
   const items = useSelector(addItemState);
+  const numberOfAmount = useSelector(addState);
   console.log(items);
   return (
     <Wrapper>
@@ -43,7 +43,7 @@ function Nav() {
         <Link to="/basket">
           <RightBox>
             <IconBasket icon={faCartArrowDown} />
-            <NumbersOfAmount>{amountOfOrder}</NumbersOfAmount>
+            <NumbersOfAmount>{numberOfAmount}</NumbersOfAmount>
             <PriceAmount>${priceOfOrder}</PriceAmount>
           </RightBox>
         </Link>

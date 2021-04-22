@@ -66,12 +66,12 @@ function ImageLoad({ image, title, price, id, amount }) {
         price: price,
       })
     );
-    // dispatch(
-    //   removeAmount({
-    //     id: id,
-    //     amount: amount,
-    //   })
-    // );
+    dispatch(
+      removeAmount({
+        id: id,
+        amount: amount,
+      })
+    );
     console.log(amount);
   };
 

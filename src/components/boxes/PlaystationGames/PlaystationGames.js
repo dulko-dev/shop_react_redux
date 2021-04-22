@@ -11,23 +11,28 @@ import {
   Image,
 } from "./playstationGamesStyle";
 import { faCartArrowDown } from "@fortawesome/free-solid-svg-icons";
-import { add, addprice } from "../../../features/amountSlice";
-import { addItem } from "../../../features/addItemSlice";
+import { addprice } from "../../../features/premierSlice";
+import { add } from "../../../features/premierSlice";
+import { addItem, counterState, counter } from "../../../features/addItemSlice";
 import { removePlay } from "../../../features/premierSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function PlaystationGames({ row, img, txt, price, id, amount }) {
   const dispatch = useDispatch();
+  const counterInfo = useSelector(counterState);
+  console.log(counterInfo);
 
   const handleAdd = () => {
     dispatch(add());
     dispatch(addprice(price));
+    dispatch(counter());
     dispatch(
       addItem({
         title: txt,
         id: id,
         img: img,
         price: price,
+        amount: counterInfo,
       })
     );
     dispatch(removePlay({ id: id, amount: amount }));
