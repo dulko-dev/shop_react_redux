@@ -1,95 +1,35 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   playstationState,
   xboxState,
   windowsState,
 } from "../../features/premierSlice";
-import { add, addprice } from "../../features/amountSlice";
+import WindowsGames from "./WindowsGames/WindowsGames";
+import PlaystationGames from "./PlaystationGames/PlaystationGames";
+import XboxGames from "./XboxGames/XboxGames";
+
 import {
   Wrapper,
   Container,
-  PlaystationGameWrapper,
-  XboxGameWrapper,
-  SideLeft,
   PlaystationBox,
   XboxBox,
   WindowsBox,
-  Image,
-  SideRight,
-  TitleSideRight,
-  PriceSideRight,
   TitleLogoRow,
   Title,
   Logo,
   Text,
-  WIndowsGameWrapper,
-  BasketIcon,
-  PriceBasketWrapper,
 } from "./beforeStyle";
 import {
   faPlaystation,
   faXbox,
   faWindows,
 } from "@fortawesome/free-brands-svg-icons";
-import { faCartArrowDown } from "@fortawesome/free-solid-svg-icons";
-import { addItem } from "../../features/addItemSlice";
 
 function BeforePremier() {
   const playAmount = useSelector(playstationState);
   const xboxAmount = useSelector(xboxState);
   const windowsAmount = useSelector(windowsState);
-
-  const dispatch = useDispatch();
-
-  const playBasket = (id) => {
-    playAmount.map((el) => {
-      if (el.id === id) {
-        dispatch(addprice(el.price));
-        dispatch(add());
-        dispatch(
-          addItem({
-            title: el.txt,
-            id: el.id,
-            img: el.img,
-          })
-        );
-      }
-      return el;
-    });
-  };
-  const xboxBasket = (id) => {
-    xboxAmount.map((el) => {
-      if (el.id === id) {
-        dispatch(addprice(el.price));
-        dispatch(add());
-        dispatch(
-          addItem({
-            title: el.txt,
-            id: el.id,
-            img: el.img,
-          })
-        );
-      }
-      return el;
-    });
-  };
-  const windowsBasket = (id) => {
-    windowsAmount.map((el) => {
-      if (el.id === id) {
-        dispatch(addprice(el.price));
-        dispatch(add());
-        dispatch(
-          addItem({
-            title: el.txt,
-            id: el.id,
-            img: el.img,
-          })
-        );
-      }
-      return el;
-    });
-  };
 
   return (
     <Wrapper>
@@ -116,68 +56,37 @@ function BeforePremier() {
           <Text>PreOrder</Text>
         </WindowsBox>
         {playAmount.map((game) => (
-          <PlaystationGameWrapper
-            column
-            style={{ gridRow: `${game.row}` }}
+          <PlaystationGames
             key={game.id}
-          >
-            <SideLeft>
-              <Image src={game.img} />
-            </SideLeft>
-            <SideRight>
-              <TitleSideRight>{game.txt}</TitleSideRight>
-              <PriceBasketWrapper>
-                <PriceSideRight>{game.price}</PriceSideRight>
-                <BasketIcon
-                  icon={faCartArrowDown}
-                  onClick={() => playBasket(game.id)}
-                />
-              </PriceBasketWrapper>
-            </SideRight>
-          </PlaystationGameWrapper>
+            row={game.row}
+            img={game.img}
+            txt={game.txt}
+            price={game.price}
+            id={game.id}
+            amount={game.amount}
+          />
         ))}
         {xboxAmount.map((game) => (
-          <XboxGameWrapper
-            column
-            style={{ gridRow: `${game.row}` }}
+          <XboxGames
             key={game.id}
-          >
-            {console.log(game.row)}
-            <SideLeft>
-              <Image src={game.img} />
-            </SideLeft>
-            <SideRight>
-              <TitleSideRight>{game.txt}</TitleSideRight>
-              <PriceBasketWrapper>
-                <PriceSideRight>${game.price}</PriceSideRight>
-                <BasketIcon
-                  icon={faCartArrowDown}
-                  onClick={() => xboxBasket(game.id)}
-                />
-              </PriceBasketWrapper>
-            </SideRight>
-          </XboxGameWrapper>
+            row={game.row}
+            img={game.img}
+            txt={game.txt}
+            price={game.price}
+            id={game.id}
+            amount={game.amount}
+          />
         ))}
         {windowsAmount.map((game) => (
-          <WIndowsGameWrapper
-            column
-            style={{ gridRow: `${game.row}` }}
+          <WindowsGames
             key={game.id}
-          >
-            <SideLeft>
-              <Image src={game.img} />
-            </SideLeft>
-            <SideRight>
-              <TitleSideRight>{game.txt}</TitleSideRight>
-              <PriceBasketWrapper>
-                <PriceSideRight>${game.price}</PriceSideRight>
-                <BasketIcon
-                  icon={faCartArrowDown}
-                  onClick={() => windowsBasket(game.id)}
-                />
-              </PriceBasketWrapper>
-            </SideRight>
-          </WIndowsGameWrapper>
+            row={game.row}
+            img={game.img}
+            txt={game.txt}
+            price={game.price}
+            id={game.id}
+            amount={game.amount}
+          />
         ))}
       </Container>
     </Wrapper>

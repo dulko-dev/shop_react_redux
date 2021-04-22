@@ -10,13 +10,15 @@ const addItemSlice = createSlice({
   reducers: {
     addItem: (state, action) => {
       return {
-        ...state,
         addItem: [...state.addItem, action.payload],
       };
+    },
+    removeItem: (state, action) => {
+      return state.addItem.filter(({ id }) => id !== action.data);
     },
   },
 });
 
-export const { addItem } = addItemSlice.actions;
+export const { addItem, removeItem } = addItemSlice.actions;
 export const addItemState = (state) => state.addItem.addItem;
 export default addItemSlice.reducer;
